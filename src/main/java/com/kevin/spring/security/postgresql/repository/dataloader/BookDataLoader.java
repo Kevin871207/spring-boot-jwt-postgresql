@@ -4,7 +4,6 @@ import com.kevin.spring.security.postgresql.models.*;
 import com.kevin.spring.security.postgresql.repository.BookRepository;
 import com.kevin.spring.security.postgresql.repository.BorrowingRecordRepository;
 import com.kevin.spring.security.postgresql.repository.InventoryRepository;
-import com.kevin.spring.security.postgresql.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,9 +23,6 @@ public class BookDataLoader implements CommandLineRunner {
 
     @Autowired
     private BorrowingRecordRepository borrowingRecordRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     @Transactional
@@ -53,12 +49,5 @@ public class BookDataLoader implements CommandLineRunner {
 
         borrowingRecordRepository.save(new BorrowingRecord(new BorrowingRecordId(1L, 1L), now, null));
         borrowingRecordRepository.save(new BorrowingRecord(new BorrowingRecordId(2L, 2L), now, null));
-
-        userRepository.save(new User("0918321985",
-                "$2a$10$cS286UfDZ2zz2zgHafkKIOy96wskTca.v4lQs2Id9JChMx/mKnioC",
-                "kevin",
-                "ss5170505@gmail.com",
-                new Date(),
-                new Date()));
     }
 }
